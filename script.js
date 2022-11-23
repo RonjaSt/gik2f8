@@ -2,7 +2,7 @@
 
 console.log('test');
 
-const searchInput = null;
+
 const bookList = [
     {
     id: 1,
@@ -15,8 +15,14 @@ const bookList = [
         title:'The Way Of Shadows'
         },
 ];
-function handleKeyPress (input)  {
-    searchBooks(input);
+
+const searchField = document.getElementById('searchField')
+console.log(searchField)
+
+searchField.addEventListener('keyup', handleKeyPress);
+
+function handleKeyPress (e)  {
+    searchBooks(e.target.value);
 }
 function searchBooks(searchTerm){
     
