@@ -6,18 +6,17 @@ console.log('test');
 const bookList = [
     {
     id: 1,
-    Author:'Brandon Sanderson',
+    author:'Brandon Sanderson',
     title:'Mistborn'
     },
     {
         id: 2,
-        Author:'Brent Weeks',
+        author:'Brent Weeks',
         title:'The Way Of Shadows'
         },
 ];
 
 const searchField = document.getElementById('searchField')
-console.log(searchField)
 
 searchField.addEventListener('keyup', handleKeyPress);
 
@@ -37,7 +36,29 @@ function searchBooks(searchTerm){
    renderBookList(filteredList);
 }
 searchBooks('o');
-function renderBookList(list){
-console.log(list);
+function renderBookList(bookList){
+    let html =` <ul class="book-list rounded-md border-2 border-zinc-400 bg w-full mx-auto">`;
+                
+for (let i = 0; i< bookList.length; i++){
+        html += `<li 
+        class="book-list__item mb-2 mx-2 last:mb-0 p-3 text-amber-500 last:border-b-0 border-b border-zinc-700 cursor-pointer">
+        ${bookList[i].author} -${bookList[i].title}
+        </li>`; 
+
+}
+
+    html += ` </ul>`;
+        
+    const existingElement = document.querySelector(".book-list");
+    console.log(existingElement);
+    const root = document.getElementById('root');
+
+    if(existingElement){
+        root.removeChild(existingElement);
+    }
+    
+    root.insertAdjacentHTML('beforeend',html);
+
+
 }
 
