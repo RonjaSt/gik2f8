@@ -1,5 +1,4 @@
 const BookList = (bookList) => {
-    console.log(BookList);
     
 
 let html =` <ul class="book-list rounded-md border-2 border-zinc-400 bg w-full mx-auto">`;

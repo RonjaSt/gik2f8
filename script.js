@@ -16,26 +16,31 @@ const bookList = [
         },
 ];
 
-const searchField = document.getElementById('searchField')
 
-searchField.addEventListener('keyup', handleKeyPress);
 
-function handleKeyPress (e)  {
-    searchBooks(e.target.value);
-}
-function searchBooks(searchTerm){
-    
-    const filteredList= [];
-   for(let i = 0; i < bookList.length; i++){
-    const title= bookList[i].title.toLowerCase();
-    if(title.indexOf(searchTerm.toLowerCase())>= 0) {
-        filteredList.push(bookList[i]);
+/* searchField.addEventListener('keyup',(e)=> searchBooks(e.target.value)); */
+searchField.addEventListener('keyup',(e)=>   
+    renderBookList(
+        bookList.filter(({ title, author }) =>{
+            const searchTerm= e.target.value.toLowerCase();
+            return title.toLowerCase().indexOf(searchTerm)>= 0 ||author.toLowerCase().indexOf(searchTerm)>= 0 
+        })
+    )
+);
 
-    }  
-   }
-   renderBookList(filteredList);
-}
-searchBooks('o');
+
+
+/* function searchBooks(searchTerm){
+    renderBookList(
+        bookList.filter(
+            ({ title, author }) =>
+            title.toLowerCase().indexOf(searchTerm.toLowerCase())>= 0 ||
+            author.toLowerCase().indexOf(searchTerm.toLowerCase())>= 0 
+        )
+    );
+} searchBooks('o');*/
+
+
 function renderBookList(bookList){
     
    BookList(bookList);
