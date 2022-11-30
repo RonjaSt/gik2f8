@@ -1,25 +1,17 @@
 'use strict'
 
-console.log('test');
 
 
-const bookList = [
-    {
-    id: 1,
-    author:'Brandon Sanderson',
-    title:'Mistborn'
-    },
-    {
-        id: 2,
-        author:'Brent Weeks',
-        title:'The Way Of Shadows'
-        },
-];
+let bookList = [];
+
+window.addEventListener("load", () =>{
+    getAll().then((apiBooks) => (bookList = apiBooks));
+});
 
 
 
-/* searchField.addEventListener('keyup',(e)=> searchBooks(e.target.value)); */
-searchField.addEventListener('keyup',(e)=>   
+searchField.addEventListener('keyup',(e)=> searchBooks(e.target.value)); 
+/* searchField.addEventListener('keyup',(e)=>   
     renderBookList(
         bookList.filter(({ title, author }) =>{
             const searchTerm= e.target.value.toLowerCase();
@@ -27,10 +19,10 @@ searchField.addEventListener('keyup',(e)=>
         })
     )
 );
+ */
 
 
-
-/* function searchBooks(searchTerm){
+async function searchBooks(searchTerm){
     renderBookList(
         bookList.filter(
             ({ title, author }) =>
@@ -38,12 +30,12 @@ searchField.addEventListener('keyup',(e)=>
             author.toLowerCase().indexOf(searchTerm.toLowerCase())>= 0 
         )
     );
-} searchBooks('o');*/
+} 
 
 
 function renderBookList(bookList){
     
-   BookList(bookList);
+  
 
     const existingElement = document.querySelector('.book-list');
     console.log(existingElement);
@@ -52,13 +44,10 @@ function renderBookList(bookList){
     if(existingElement){
         root.removeChild(existingElement);
     }
-    if(bookList.length >0){
+    if(bookList.length >0 && searchField.value) {
         root.insertAdjacentHTML('beforeend', BookList(bookList));
 
     }
-    
-    
-
  
 }
 
