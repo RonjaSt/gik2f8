@@ -37,28 +37,23 @@ function searchBooks(searchTerm){
 }
 searchBooks('o');
 function renderBookList(bookList){
-    let html =` <ul class="book-list rounded-md border-2 border-zinc-400 bg w-full mx-auto">`;
-                
-for (let i = 0; i< bookList.length; i++){
-        html += `<li 
-        class="book-list__item mb-2 mx-2 last:mb-0 p-3 text-amber-500 last:border-b-0 border-b border-zinc-700 cursor-pointer">
-        ${bookList[i].author} -${bookList[i].title}
-        </li>`; 
+    
+   BookList(bookList);
 
-}
-
-    html += ` </ul>`;
-        
-    const existingElement = document.querySelector(".book-list");
+    const existingElement = document.querySelector('.book-list');
     console.log(existingElement);
     const root = document.getElementById('root');
 
     if(existingElement){
         root.removeChild(existingElement);
     }
+    if(bookList.length >0){
+        root.insertAdjacentHTML('beforeend', BookList(bookList));
+
+    }
     
-    root.insertAdjacentHTML('beforeend',html);
+    
 
-
+ 
 }
 
